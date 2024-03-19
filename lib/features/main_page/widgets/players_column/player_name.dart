@@ -15,21 +15,22 @@ class PlayerName extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var team = ref.watch(teamsProvider)[0];
+    var team = ref.watch(teamsProvider)[teamIndex];
     var window = ref.watch(windowIdProvider);
 
     if (window == 0) {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 3),
         child: TextFormField(
-          initialValue: ref.read(teamsProvider)[0].players[playerIndex].name,
+          initialValue:
+              ref.read(teamsProvider)[teamIndex].players[playerIndex].name,
           decoration: const InputDecoration(
             border: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.zero),
             ),
           ),
           onChanged: (value) => ref.read(teamsProvider.notifier).setPlayer(
-                teamIndex: 0,
+                teamIndex: teamIndex,
                 playerIndex: playerIndex,
                 name: value,
               ),
