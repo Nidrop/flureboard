@@ -12,10 +12,10 @@ TeamModel _$TeamModelFromJson(Map<String, dynamic> json) => TeamModel(
       score: json['score'] as int,
       timeouts: json['timeouts'] as int,
       falls: json['falls'] as int,
-      playerCount: json['playerCount'] as int,
-    )..players = (json['players'] as List<dynamic>)
-        .map((e) => PlayerModel.fromJson(e as Map<String, dynamic>))
-        .toList();
+      players: (json['players'] as List<dynamic>)
+          .map((e) => PlayerModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
 
 Map<String, dynamic> _$TeamModelToJson(TeamModel instance) => <String, dynamic>{
       'name': instance.name,
@@ -23,6 +23,5 @@ Map<String, dynamic> _$TeamModelToJson(TeamModel instance) => <String, dynamic>{
       'score': instance.score,
       'timeouts': instance.timeouts,
       'falls': instance.falls,
-      'playerCount': instance.playerCount,
       'players': instance.players.map((e) => e.toJson()).toList(),
     };

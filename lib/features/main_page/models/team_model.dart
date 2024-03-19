@@ -5,13 +5,12 @@ part 'team_model.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class TeamModel {
-  String name;
-  String country;
-  int score;
-  int timeouts;
-  int falls;
-  int playerCount;
-  List<PlayerModel> players = [];
+  final String name;
+  final String country;
+  final int score;
+  final int timeouts;
+  final int falls;
+  final List<PlayerModel> players;
 
   TeamModel({
     required this.name,
@@ -19,10 +18,8 @@ class TeamModel {
     required this.score,
     required this.timeouts,
     required this.falls,
-    required this.playerCount,
-  }) {
-    // players = List.generate(playerCount, (index) => );
-  }
+    required this.players,
+  });
 
   factory TeamModel.fromJson(Map<String, dynamic> json) =>
       _$TeamModelFromJson(json);

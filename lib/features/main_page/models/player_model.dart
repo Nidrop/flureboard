@@ -4,10 +4,10 @@ part 'player_model.g.dart';
 
 @JsonSerializable()
 class PlayerModel {
-  String number;
-  String name;
-  int falls;
-  int score;
+  final String number;
+  final String name;
+  final int falls;
+  final int score;
 
   PlayerModel({
     required this.number,
