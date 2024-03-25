@@ -6,7 +6,7 @@ part of 'period.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$periodHash() => r'ecc9c166c78ef71ef2112712e79fba7e14c8bcfe';
+String _$periodHash() => r'2bc0a69622bfaea10989d3d95d6f467739a237df';
 
 /// See also [Period].
 @ProviderFor(Period)

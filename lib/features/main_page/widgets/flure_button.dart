@@ -8,6 +8,7 @@ class FlureButton extends StatelessWidget {
     this.onSecondaryTap,
     this.onTertiaryTapDown,
     this.onLongPress,
+    this.backgroundColor,
   });
 
   final void Function()? onPressed;
@@ -16,6 +17,8 @@ class FlureButton extends StatelessWidget {
   final void Function()? onSecondaryTap;
   final void Function(TapDownDetails)? onTertiaryTapDown;
   final void Function()? onLongPress;
+
+  final Color? backgroundColor;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -26,6 +29,7 @@ class FlureButton extends StatelessWidget {
         child: FilledButton(
           style: FilledButton.styleFrom(
             shape: const LinearBorder(),
+            backgroundColor: backgroundColor,
           ),
           onPressed: onPressed,
           onLongPress: onLongPress,

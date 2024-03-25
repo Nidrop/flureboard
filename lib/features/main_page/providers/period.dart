@@ -9,11 +9,11 @@ class Period extends _$Period {
     return 0;
   }
 
-  void inc() {
-    state++;
+  void set(int number) {
+    state = number;
   }
 
-  void dec() {
-    state--;
+  void inc(int number) {
+    state += number;
   }
 }

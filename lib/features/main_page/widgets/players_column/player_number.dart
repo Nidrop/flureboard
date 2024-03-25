@@ -23,6 +23,8 @@ class PlayerNumber extends ConsumerWidget {
       child: window == 0
           ? FlureButton(
               onPressed: () => (),
+              // backgroundColor: Theme.of(context).colorScheme.secondary,
+              backgroundColor: Colors.blueGrey,
               child: Text(team.players[playerIndex].number),
             )
           : Text(team.players[playerIndex].number),

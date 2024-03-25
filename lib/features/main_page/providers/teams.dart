@@ -33,14 +33,13 @@ class Teams extends _$Teams {
     );
   }
 
-  void _setTeam({
+  void setTeam({
     required int teamIndex,
     String? name,
     String? country,
     int? score,
     int? timeouts,
     int? falls,
-    int? playerCount,
   }) {
     var team = state[teamIndex];
     state = List.generate(
@@ -66,6 +65,36 @@ class Teams extends _$Teams {
         );
       },
       growable: false,
+    );
+  }
+
+  void incTeamScore({
+    required int teamIndex,
+    required int number,
+  }) {
+    setTeam(
+      teamIndex: teamIndex,
+      score: state[teamIndex].score + number,
+    );
+  }
+
+  void incTeamTimeouts({
+    required int teamIndex,
+    required int number,
+  }) {
+    setTeam(
+      teamIndex: teamIndex,
+      timeouts: state[teamIndex].timeouts + number,
+    );
+  }
+
+  void incTeamFalls({
+    required int teamIndex,
+    required int number,
+  }) {
+    setTeam(
+      teamIndex: teamIndex,
+      falls: state[teamIndex].falls + number,
     );
   }
 

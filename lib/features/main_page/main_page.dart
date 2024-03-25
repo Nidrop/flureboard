@@ -1,7 +1,6 @@
 import 'package:flureboard/features/main_page/widgets/center_column/center_column.dart';
 import 'package:flureboard/features/main_page/widgets/players_column/players_column.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -11,8 +10,9 @@ class MainPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Flureboard'),
+        centerTitle: true,
       ),
-      body: Row(
+      body: const Row(
         children: [
           SizedBox(
             width: 426,
@@ -20,11 +20,15 @@ class MainPage extends StatelessWidget {
               teamIndex: 0,
             ),
           ),
-          VerticalDivider(),
+          VerticalDivider(
+            width: 4,
+          ),
           Expanded(
             child: CenterColumn(),
           ),
-          VerticalDivider(),
+          VerticalDivider(
+            width: 4,
+          ),
           SizedBox(
             width: 426,
             child: PlayersColumn(
