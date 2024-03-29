@@ -1,5 +1,6 @@
 import 'package:flureboard/features/main_page/models/player_model.dart';
 import 'package:flureboard/features/main_page/models/team_model.dart';
+import 'package:flureboard/features/main_page/providers/board_settings.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'teams.g.dart';
@@ -55,14 +56,7 @@ class Teams extends _$Teams {
             players: team.players,
           );
         }
-        return TeamModel(
-          name: state[i].name,
-          country: state[i].country,
-          score: state[i].score,
-          timeouts: state[i].timeouts,
-          falls: state[i].falls,
-          players: state[i].players,
-        );
+        return state[i];
       },
       growable: false,
     );
@@ -119,24 +113,24 @@ class Teams extends _$Teams {
       if (i == playerIndex) {
         return newPlayer;
       }
-      return PlayerModel(
-        number: team.players[i].number,
-        name: team.players[i].name,
-        falls: team.players[i].falls,
-        score: team.players[i].score,
-      );
+      return team.players[i];
     });
 
     state = List.generate(
       state.length,
-      (i) => TeamModel(
-        name: state[i].name,
-        country: state[i].country,
-        score: state[i].score,
-        timeouts: state[i].timeouts,
-        falls: state[i].falls,
-        players: i == teamIndex ? players : state[i].players,
-      ),
+      (i) {
+        if (i == teamIndex) {
+          return TeamModel(
+            name: state[i].name,
+            country: state[i].country,
+            score: state[i].score,
+            timeouts: state[i].timeouts,
+            falls: state[i].falls,
+            players: players,
+          );
+        }
+        return state[i];
+      },
       growable: false,
     );
   }
@@ -163,5 +157,30 @@ class Teams extends _$Teams {
       playerIndex: playerIndex,
       falls: state[teamIndex].players[playerIndex].falls + number,
     );
+  }
+
+  // //TODO do one state update
+  // void calculateTeamScore() {
+  //   for (final team in state) {
+  //     int sum = 0;
+  //     for (final player in team.players) {
+  //       sum += player.score;
+  //     }
+  //   }
+  // }
+}
+
+@riverpod
+int teamScore(TeamScoreRef ref, int teamIndex) {
+  final hasPlayers = ref.watch(boardSettingsProvider).playersEnabled;
+  final team = ref.watch(teamsProvider)[teamIndex];
+  if (hasPlayers) {
+    int sum = 0;
+    for (final player in team.players) {
+      sum += player.score;
+    }
+    return sum;
+  } else {
+    return team.score;
   }
 }

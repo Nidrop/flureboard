@@ -86,10 +86,10 @@ class TeamScore extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var team = ref.watch(teamsProvider)[teamIndex];
+    var score = ref.watch(TeamScoreProvider(teamIndex));
 
     return Text(
-      team.score.toString(),
+      score.toString(),
       style: const TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
     );
   }
