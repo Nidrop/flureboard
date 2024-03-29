@@ -22,16 +22,22 @@ class TimerZone extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             FlureButton(
-              onPressed: () {},
-              child: Text('10'),
+              onPressed: () => ref
+                  .read(timerProvider.notifier)
+                  .setPeriodTime(10 * 60 * 1000),
+              child: Text('10 мин'),
             ),
             FlureButton(
-              onPressed: () {},
-              child: Text('12'),
+              onPressed: () => ref
+                  .read(timerProvider.notifier)
+                  .setPeriodTime(12 * 60 * 1000),
+              child: Text('12 мин'),
             ),
             FlureButton(
-              onPressed: () {},
-              child: Text('15'),
+              onPressed: () => ref
+                  .read(timerProvider.notifier)
+                  .setPeriodTime(15 * 60 * 1000),
+              child: Text('15 мин'),
             ),
           ],
         ),
