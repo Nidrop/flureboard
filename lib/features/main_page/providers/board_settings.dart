@@ -7,12 +7,31 @@ part 'board_settings.g.dart';
 class BoardSettings extends _$BoardSettings {
   @override
   BoardSettingsModel build() {
-    return BoardSettingsModel(playersEnabled: true);
+    return BoardSettingsModel(
+      playersEnabled: true,
+      teamFallsEnabled: true,
+      teamTimeoutsEnabled: true,
+      playerFallsEnabled: true,
+    );
   }
 
-  setBoardSettings(BoardSettingsModel s) {
+  setBoardSettings({
+    bool? playersEnabled,
+    bool? playerFallsEnabled,
+    bool? teamFallsEnabled,
+    bool? teamtimeoutsEnabled,
+  }) {
+    if (playersEnabled == false) {
+      playerFallsEnabled = playersEnabled;
+    }
+    if (playerFallsEnabled == true) {
+      playersEnabled = true;
+    }
     state = BoardSettingsModel(
-      playersEnabled: s.playersEnabled,
+      playersEnabled: playersEnabled ?? state.playersEnabled,
+      playerFallsEnabled: playerFallsEnabled ?? state.playerFallsEnabled,
+      teamFallsEnabled: teamFallsEnabled ?? state.teamFallsEnabled,
+      teamTimeoutsEnabled: teamtimeoutsEnabled ?? state.teamTimeoutsEnabled,
     );
   }
 }

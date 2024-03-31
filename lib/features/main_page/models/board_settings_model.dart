@@ -4,9 +4,15 @@ part 'board_settings_model.g.dart';
 
 @JsonSerializable()
 class BoardSettingsModel {
-  bool playersEnabled;
+  final bool playersEnabled;
+  final bool playerFallsEnabled;
+  final bool teamFallsEnabled;
+  final bool teamTimeoutsEnabled;
 
   BoardSettingsModel({
+    required this.playerFallsEnabled,
+    required this.teamFallsEnabled,
+    required this.teamTimeoutsEnabled,
     required this.playersEnabled,
   });
 

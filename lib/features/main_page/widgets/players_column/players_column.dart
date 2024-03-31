@@ -1,5 +1,6 @@
 import 'package:flureboard/features/language/current_language.dart';
 import 'package:flureboard/features/language/languages.dart';
+import 'package:flureboard/features/main_page/providers/board_settings.dart';
 import 'package:flureboard/features/main_page/providers/teams.dart';
 import 'package:flureboard/features/main_page/widgets/players_column/player_row.dart';
 import 'package:flutter/material.dart';
@@ -59,6 +60,7 @@ class PlayersColumnTitles extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var lang = ref.watch(currentLanguageProvider);
+    final hasPlayerFalls = ref.watch(boardSettingsProvider).playerFallsEnabled;
 
     return Row(
       children: [
@@ -70,10 +72,12 @@ class PlayersColumnTitles extends ConsumerWidget {
           flex: 4,
           child: Text(lang.playerName),
         ),
-        Expanded(
-          flex: 1,
-          child: Text(lang.playerFalls),
-        ),
+        (hasPlayerFalls)
+            ? Expanded(
+                flex: 1,
+                child: Text(lang.playerFalls),
+              )
+            : const SizedBox(),
         Expanded(
           flex: 1,
           child: Text(lang.playerScore),

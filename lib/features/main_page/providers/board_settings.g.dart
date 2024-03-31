@@ -6,7 +6,7 @@ part of 'board_settings.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$boardSettingsHash() => r'1bd6041d0bb1fd0351914decb62817abcf8a9e10';
+String _$boardSettingsHash() => r'78e9465f557b69fdd3d8b26d3b90c99eaba63711';
 
 /// See also [BoardSettings].
 @ProviderFor(BoardSettings)

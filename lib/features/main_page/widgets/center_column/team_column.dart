@@ -1,4 +1,5 @@
 import 'package:flureboard/features/language/current_language.dart';
+import 'package:flureboard/features/main_page/providers/board_settings.dart';
 import 'package:flureboard/features/main_page/providers/teams.dart';
 import 'package:flureboard/features/main_page/providers/window_id.dart';
 import 'package:flureboard/features/main_page/widgets/flure_button.dart';
@@ -46,33 +47,37 @@ class TeamTimeouts extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var window = ref.watch(windowIdProvider);
-    var lang = ref.watch(currentLanguageProvider);
-    var team = ref.watch(teamsProvider)[teamIndex];
+    final window = ref.watch(windowIdProvider);
+    final lang = ref.watch(currentLanguageProvider);
+    final team = ref.watch(teamsProvider)[teamIndex];
+    final hasTeamTimeouts =
+        ref.watch(boardSettingsProvider).teamTimeoutsEnabled;
 
-    return Column(
-      children: [
-        Text(lang.teamTimeouts),
-        const SizedBox(
-          height: 3,
-        ),
-        (window == 0)
-            ? FlureButton(
-                onPressed: () =>
-                    ref.read(teamsProvider.notifier).incTeamTimeouts(
-                          teamIndex: teamIndex,
-                          number: 1,
-                        ),
-                onSecondaryTap: () =>
-                    ref.read(teamsProvider.notifier).incTeamTimeouts(
-                          teamIndex: teamIndex,
-                          number: -1,
-                        ),
-                child: Text(team.timeouts.toString()),
-              )
-            : Text(team.timeouts.toString()),
-      ],
-    );
+    return (hasTeamTimeouts)
+        ? Column(
+            children: [
+              Text(lang.teamTimeouts),
+              const SizedBox(
+                height: 3,
+              ),
+              (window == 0)
+                  ? FlureButton(
+                      onPressed: () =>
+                          ref.read(teamsProvider.notifier).incTeamTimeouts(
+                                teamIndex: teamIndex,
+                                number: 1,
+                              ),
+                      onSecondaryTap: () =>
+                          ref.read(teamsProvider.notifier).incTeamTimeouts(
+                                teamIndex: teamIndex,
+                                number: -1,
+                              ),
+                      child: Text(team.timeouts.toString()),
+                    )
+                  : Text(team.timeouts.toString()),
+            ],
+          )
+        : const SizedBox();
   }
 }
 
@@ -86,12 +91,27 @@ class TeamScore extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var score = ref.watch(TeamScoreProvider(teamIndex));
+    final window = ref.watch(windowIdProvider);
+    final hasPlayers = ref.watch(boardSettingsProvider).playersEnabled;
+    final score = ref.watch(TeamScoreProvider(teamIndex));
 
-    return Text(
-      score.toString(),
-      style: const TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
-    );
+    return (hasPlayers || window != 0)
+        ? Text(
+            score.toString(),
+            style: const TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
+          )
+        : FlureButton(
+            onPressed: () => ref
+                .read(teamsProvider.notifier)
+                .incTeamScore(teamIndex: teamIndex, number: 1),
+            onSecondaryTap: () => ref
+                .read(teamsProvider.notifier)
+                .incTeamScore(teamIndex: teamIndex, number: -1),
+            child: Text(
+              score.toString(),
+              style: const TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
+            ),
+          );
   }
 }
 
