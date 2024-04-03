@@ -37,20 +37,20 @@ class PlayerRow extends ConsumerWidget {
             playerIndex: playerIndex,
           ),
         ),
-        Expanded(
-          child: PlayerFalls(
-            teamIndex: teamIndex,
-            playerIndex: playerIndex,
-          ),
-        ),
         (hasPlayerFalls)
             ? Expanded(
-                child: PlayerScore(
+                child: PlayerFalls(
                   teamIndex: teamIndex,
                   playerIndex: playerIndex,
                 ),
               )
             : const SizedBox(),
+        Expanded(
+          child: PlayerScore(
+            teamIndex: teamIndex,
+            playerIndex: playerIndex,
+          ),
+        ),
       ],
     );
   }
