@@ -1,6 +1,7 @@
 import 'package:flureboard/features/main_page/models/player_model.dart';
 import 'package:flureboard/features/main_page/models/team_model.dart';
 import 'package:flureboard/features/main_page/providers/board_settings.dart';
+import 'package:flureboard/features/main_page/providers/window_send.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'teams.g.dart';
@@ -59,6 +60,18 @@ class Teams extends _$Teams {
         return state[i];
       },
       growable: false,
+    );
+
+    //TODO find alternative way
+    ref.read(
+      windowSendTeamProvider(
+        teamIndex: teamIndex,
+        teamName: name,
+        country: country,
+        score: score,
+        timeouts: timeouts,
+        falls: falls,
+      ),
     );
   }
 

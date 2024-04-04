@@ -43,6 +43,7 @@ class _TimerDialogState extends ConsumerState<TimerDialog> {
     firstDigitOfMinute = minute % 10;
     secondDigitOfMinute = minute ~/ 10;
 
+    //TODO dispose controllers
     _wheelControllers = [
       FixedExtentScrollController(initialItem: secondDigitOfMinute),
       FixedExtentScrollController(initialItem: firstDigitOfMinute),

@@ -154,7 +154,7 @@ class _TeamScoreProviderElement extends AutoDisposeProviderElement<int>
   int get teamIndex => (origin as TeamScoreProvider).teamIndex;
 }
 
-String _$teamsHash() => r'de913c6a3d5b6760502ab5230af937c20882aeed';
+String _$teamsHash() => r'c2a4572d25a13eb190140c4151f11c14b273397f';
 
 /// See also [Teams].
 @ProviderFor(Teams)
