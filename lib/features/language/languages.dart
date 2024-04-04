@@ -16,12 +16,14 @@ sealed class Lang {
   final String timer = "Timer";
   final String cancel = "Cancel";
   final String accept = "Accept";
-  final String close = "Accept";
+  final String close = "Close";
   final String settings = "Settings";
   final String players = "Players";
   final String playerFalls1 = "Player Falls";
   final String teamFalls1 = "Team Falls";
   final String teamTimeouts1 = "Team Timeouts";
+  final String fullscreen = "Fullscreen";
+  final String scoreboard = "Scoreboard";
 }
 
 class LangRu implements Lang {
@@ -71,4 +73,8 @@ class LangRu implements Lang {
   final String teamFalls1 = "Фолы Команды";
   @override
   final String teamTimeouts1 = "Таймауты команды";
+  @override
+  final String fullscreen = "Полноэкранный режим";
+  @override
+  final String scoreboard = "Табло";
 }
