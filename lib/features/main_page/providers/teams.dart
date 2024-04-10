@@ -146,6 +146,18 @@ class Teams extends _$Teams {
       },
       growable: false,
     );
+
+    //TODO find alternative way
+    ref.read(
+      windowSendPlayerProvider(
+        teamIndex: teamIndex,
+        playerIndex: playerIndex,
+        number: number,
+        playerName: name,
+        falls: falls,
+        score: score,
+      ),
+    );
   }
 
   void incPlayerScore({

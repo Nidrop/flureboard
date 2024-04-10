@@ -40,18 +40,23 @@ class MyApp extends ConsumerWidget {
   }
 }
 
-class MyAppSecondary extends ConsumerWidget {
+class MyAppSecondary extends ConsumerStatefulWidget {
   const MyAppSecondary({super.key, required this.windowId});
   final int windowId;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    //TODO find another way
-    final wid = ref.watch(windowIdProvider);
-    if (wid == 0) {
-      Future(() => ref.read(windowIdProvider.notifier).setId(windowId));
-    }
+  ConsumerState<MyAppSecondary> createState() => _MyAppSecondaryState();
+}
 
+class _MyAppSecondaryState extends ConsumerState<MyAppSecondary> {
+  @override
+  void initState() {
+    super.initState();
+    Future(() => ref.read(windowIdProvider.notifier).setId(widget.windowId));
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flureboard Scoreboard',
       theme: FlexThemeData.light(scheme: FlexScheme.indigo),

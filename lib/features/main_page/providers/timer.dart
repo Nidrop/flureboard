@@ -66,6 +66,29 @@ class Timer extends _$Timer {
     );
   }
 
+  //currently only for channel communication
+  void setTimeoutTime(int d) {
+    // state.timeoutTime = d;
+    state = TimerModel(
+      isPeriod: state.isPeriod,
+      isPaused: state.isPaused,
+      periodTime: state.periodTime,
+      timeoutTime: d,
+      timer: state.timer,
+    );
+  }
+
+  //currently only for channel communication
+  void setPeriod(bool p) {
+    state = TimerModel(
+      isPeriod: p,
+      isPaused: state.isPaused,
+      periodTime: state.periodTime,
+      timeoutTime: state.timeoutTime,
+      timer: state.timer,
+    );
+  }
+
   void togglePeriodTimer() {
     bool isPeriod = state.isPeriod;
     bool isPaused = state.isPaused;

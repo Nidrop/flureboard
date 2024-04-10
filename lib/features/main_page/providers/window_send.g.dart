@@ -6,7 +6,7 @@ part of 'window_send.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$windowSendTeamHash() => r'36a057f02b878e8ca0397eddfa9601829f419b88';
+String _$windowSendTeamHash() => r'13a233e614445fafa3e162dd29df8ce2b47d333f';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -235,5 +235,261 @@ class _WindowSendTeamProviderElement extends AutoDisposeProviderElement<void>
   @override
   int? get falls => (origin as WindowSendTeamProvider).falls;
 }
+
+String _$windowSendPlayerHash() => r'195242335e9b0352e5d4cc6cf696b5142a338400';
+
+/// See also [windowSendPlayer].
+@ProviderFor(windowSendPlayer)
+const windowSendPlayerProvider = WindowSendPlayerFamily();
+
+/// See also [windowSendPlayer].
+class WindowSendPlayerFamily extends Family<void> {
+  /// See also [windowSendPlayer].
+  const WindowSendPlayerFamily();
+
+  /// See also [windowSendPlayer].
+  WindowSendPlayerProvider call({
+    required int teamIndex,
+    required int playerIndex,
+    String? number,
+    String? playerName,
+    int? falls,
+    int? score,
+  }) {
+    return WindowSendPlayerProvider(
+      teamIndex: teamIndex,
+      playerIndex: playerIndex,
+      number: number,
+      playerName: playerName,
+      falls: falls,
+      score: score,
+    );
+  }
+
+  @override
+  WindowSendPlayerProvider getProviderOverride(
+    covariant WindowSendPlayerProvider provider,
+  ) {
+    return call(
+      teamIndex: provider.teamIndex,
+      playerIndex: provider.playerIndex,
+      number: provider.number,
+      playerName: provider.playerName,
+      falls: provider.falls,
+      score: provider.score,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'windowSendPlayerProvider';
+}
+
+/// See also [windowSendPlayer].
+class WindowSendPlayerProvider extends AutoDisposeProvider<void> {
+  /// See also [windowSendPlayer].
+  WindowSendPlayerProvider({
+    required int teamIndex,
+    required int playerIndex,
+    String? number,
+    String? playerName,
+    int? falls,
+    int? score,
+  }) : this._internal(
+          (ref) => windowSendPlayer(
+            ref as WindowSendPlayerRef,
+            teamIndex: teamIndex,
+            playerIndex: playerIndex,
+            number: number,
+            playerName: playerName,
+            falls: falls,
+            score: score,
+          ),
+          from: windowSendPlayerProvider,
+          name: r'windowSendPlayerProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$windowSendPlayerHash,
+          dependencies: WindowSendPlayerFamily._dependencies,
+          allTransitiveDependencies:
+              WindowSendPlayerFamily._allTransitiveDependencies,
+          teamIndex: teamIndex,
+          playerIndex: playerIndex,
+          number: number,
+          playerName: playerName,
+          falls: falls,
+          score: score,
+        );
+
+  WindowSendPlayerProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.teamIndex,
+    required this.playerIndex,
+    required this.number,
+    required this.playerName,
+    required this.falls,
+    required this.score,
+  }) : super.internal();
+
+  final int teamIndex;
+  final int playerIndex;
+  final String? number;
+  final String? playerName;
+  final int? falls;
+  final int? score;
+
+  @override
+  Override overrideWith(
+    void Function(WindowSendPlayerRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: WindowSendPlayerProvider._internal(
+        (ref) => create(ref as WindowSendPlayerRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        teamIndex: teamIndex,
+        playerIndex: playerIndex,
+        number: number,
+        playerName: playerName,
+        falls: falls,
+        score: score,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeProviderElement<void> createElement() {
+    return _WindowSendPlayerProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is WindowSendPlayerProvider &&
+        other.teamIndex == teamIndex &&
+        other.playerIndex == playerIndex &&
+        other.number == number &&
+        other.playerName == playerName &&
+        other.falls == falls &&
+        other.score == score;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, teamIndex.hashCode);
+    hash = _SystemHash.combine(hash, playerIndex.hashCode);
+    hash = _SystemHash.combine(hash, number.hashCode);
+    hash = _SystemHash.combine(hash, playerName.hashCode);
+    hash = _SystemHash.combine(hash, falls.hashCode);
+    hash = _SystemHash.combine(hash, score.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin WindowSendPlayerRef on AutoDisposeProviderRef<void> {
+  /// The parameter `teamIndex` of this provider.
+  int get teamIndex;
+
+  /// The parameter `playerIndex` of this provider.
+  int get playerIndex;
+
+  /// The parameter `number` of this provider.
+  String? get number;
+
+  /// The parameter `playerName` of this provider.
+  String? get playerName;
+
+  /// The parameter `falls` of this provider.
+  int? get falls;
+
+  /// The parameter `score` of this provider.
+  int? get score;
+}
+
+class _WindowSendPlayerProviderElement extends AutoDisposeProviderElement<void>
+    with WindowSendPlayerRef {
+  _WindowSendPlayerProviderElement(super.provider);
+
+  @override
+  int get teamIndex => (origin as WindowSendPlayerProvider).teamIndex;
+  @override
+  int get playerIndex => (origin as WindowSendPlayerProvider).playerIndex;
+  @override
+  String? get number => (origin as WindowSendPlayerProvider).number;
+  @override
+  String? get playerName => (origin as WindowSendPlayerProvider).playerName;
+  @override
+  int? get falls => (origin as WindowSendPlayerProvider).falls;
+  @override
+  int? get score => (origin as WindowSendPlayerProvider).score;
+}
+
+String _$windowSendPeriodHash() => r'12f50a57bed9f1828c29e81f1ed9eeb4bedea8d3';
+
+/// See also [windowSendPeriod].
+@ProviderFor(windowSendPeriod)
+final windowSendPeriodProvider = AutoDisposeProvider<void>.internal(
+  windowSendPeriod,
+  name: r'windowSendPeriodProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$windowSendPeriodHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef WindowSendPeriodRef = AutoDisposeProviderRef<void>;
+String _$windowSendTimerHash() => r'2d0cf313a7ddc4df3a4e03c952a4bf0cd95ad56b';
+
+/// See also [windowSendTimer].
+@ProviderFor(windowSendTimer)
+final windowSendTimerProvider = AutoDisposeProvider<void>.internal(
+  windowSendTimer,
+  name: r'windowSendTimerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$windowSendTimerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef WindowSendTimerRef = AutoDisposeProviderRef<void>;
+String _$windowSendTimerStateHash() =>
+    r'28ab69b6469627bb5aa24ba1b50aedbf1b937973';
+
+/// See also [windowSendTimerState].
+@ProviderFor(windowSendTimerState)
+final windowSendTimerStateProvider = AutoDisposeProvider<void>.internal(
+  windowSendTimerState,
+  name: r'windowSendTimerStateProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$windowSendTimerStateHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef WindowSendTimerStateRef = AutoDisposeProviderRef<void>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
