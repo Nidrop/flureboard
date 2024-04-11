@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:desktop_multi_window/desktop_multi_window.dart';
+import 'package:flureboard/features/main_page/models/board_settings_model.dart';
+import 'package:flureboard/features/main_page/providers/board_settings.dart';
 import 'package:flureboard/features/main_page/providers/period.dart';
 import 'package:flureboard/features/main_page/providers/teams.dart';
 import 'package:flureboard/features/main_page/providers/timer.dart';
@@ -62,6 +64,11 @@ class WindowId extends _$WindowId {
         break;
       case "windowSendPeriod":
         ref.read(periodProvider.notifier).set(call.arguments as int);
+        break;
+      case "windowSendBoardSettings":
+        ref.read(boardSettingsProvider.notifier).newBoardSettings(
+              BoardSettingsModel.fromJson(jsonDecode(call.arguments as String)),
+            );
         break;
       default:
     }

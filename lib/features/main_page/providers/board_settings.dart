@@ -15,7 +15,12 @@ class BoardSettings extends _$BoardSettings {
     );
   }
 
-  setBoardSettings({
+  //for connection
+  void newBoardSettings(BoardSettingsModel s) {
+    state = s;
+  }
+
+  void setBoardSettings({
     bool? playersEnabled,
     bool? playerFallsEnabled,
     bool? teamFallsEnabled,

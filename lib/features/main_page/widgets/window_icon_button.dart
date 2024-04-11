@@ -15,6 +15,7 @@ class WindowIconButton extends ConsumerWidget {
     ref.watch(windowSendPeriodProvider);
     ref.watch(windowSendTimerProvider);
     ref.watch(windowSendTimerStateProvider);
+    ref.watch(windowSendBoardSettingsProvider);
 
     return (state == WindowIconButtonEnum.closed)
         ? IconButton(

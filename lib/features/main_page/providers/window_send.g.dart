@@ -491,5 +491,21 @@ final windowSendTimerStateProvider = AutoDisposeProvider<void>.internal(
 );
 
 typedef WindowSendTimerStateRef = AutoDisposeProviderRef<void>;
+String _$windowSendBoardSettingsHash() =>
+    r'7dcb476a2a8371176974b0850400f1a81ee63818';
+
+/// See also [windowSendBoardSettings].
+@ProviderFor(windowSendBoardSettings)
+final windowSendBoardSettingsProvider = AutoDisposeProvider<void>.internal(
+  windowSendBoardSettings,
+  name: r'windowSendBoardSettingsProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$windowSendBoardSettingsHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef WindowSendBoardSettingsRef = AutoDisposeProviderRef<void>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

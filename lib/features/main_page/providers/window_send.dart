@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:desktop_multi_window/desktop_multi_window.dart';
+import 'package:flureboard/features/main_page/models/board_settings_model.dart';
+import 'package:flureboard/features/main_page/providers/board_settings.dart';
 import 'package:flureboard/features/main_page/providers/period.dart';
 import 'package:flureboard/features/main_page/providers/timer.dart';
 import 'package:flureboard/features/main_page/providers/window_id.dart';
@@ -127,4 +129,15 @@ void windowSendTimerState(WindowSendTimerStateRef ref) {
       }
     },
   );
+}
+
+@riverpod
+void windowSendBoardSettings(WindowSendBoardSettingsRef ref) {
+  final window = ref.watch(windowIdProvider);
+  if (window != 0) {
+    return;
+  }
+
+  final settings = ref.watch(boardSettingsProvider);
+  _send<String>("windowSendBoardSettings", jsonEncode(settings.toJson()));
 }
