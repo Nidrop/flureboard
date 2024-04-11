@@ -23,7 +23,6 @@ class MainPage extends ConsumerWidget {
               title: Text('Flureboard'),
               centerTitle: true,
               actions: [
-                const WindowIconButton(),
                 IconButton(
                   tooltip: lang.settings,
                   onPressed: () => showDialog(
@@ -32,6 +31,7 @@ class MainPage extends ConsumerWidget {
                   ),
                   icon: const Icon(Icons.settings),
                 ),
+                const WindowIconButton(),
               ],
             )
           : null,

@@ -6,21 +6,21 @@ part of 'window_icon_state.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$windowIconStateHash() => r'0e1082de4afbce9a8640f7215b5c37fa0a290ea8';
+String _$subWindowStateHash() => r'9024c0cb0755177566ca48dc30968001de59e662';
 
-/// See also [WindowIconState].
-@ProviderFor(WindowIconState)
-final windowIconStateProvider =
-    AutoDisposeNotifierProvider<WindowIconState, WindowIconButtonEnum>.internal(
-  WindowIconState.new,
-  name: r'windowIconStateProvider',
+/// See also [SubWindowState].
+@ProviderFor(SubWindowState)
+final subWindowStateProvider =
+    AutoDisposeNotifierProvider<SubWindowState, WindowIconButtonEnum>.internal(
+  SubWindowState.new,
+  name: r'subWindowStateProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$windowIconStateHash,
+      : _$subWindowStateHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$WindowIconState = AutoDisposeNotifier<WindowIconButtonEnum>;
+typedef _$SubWindowState = AutoDisposeNotifier<WindowIconButtonEnum>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -1,4 +1,3 @@
-import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:flureboard/features/language/current_language.dart';
 import 'package:flureboard/features/main_page/providers/window_icon_state.dart';
 import 'package:flureboard/features/main_page/providers/window_send.dart';
@@ -10,7 +9,7 @@ class WindowIconButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(windowIconStateProvider);
+    final state = ref.watch(subWindowStateProvider);
     final lang = ref.watch(currentLanguageProvider);
     //init for communication
     ref.watch(windowSendPeriodProvider);
@@ -20,18 +19,8 @@ class WindowIconButton extends ConsumerWidget {
     return (state == WindowIconButtonEnum.closed)
         ? IconButton(
             onPressed: () {
-              DesktopMultiWindow.createWindow('Scoreboard').then((window) {
-                window
-                  ..setFrame(const Offset(0, 0) & const Size(1280, 720))
-                  ..center()
-                  ..setTitle('Flureboard Scoreboard')
-                  ..showTitleBar(true)
-                  ..setPreventClose(true)
-                  ..show();
-              });
-
               ref
-                  .read(windowIconStateProvider.notifier)
+                  .read(subWindowStateProvider.notifier)
                   .setButtonState(WindowIconButtonEnum.windowed);
             },
             tooltip: lang.scoreboard,
@@ -41,25 +30,11 @@ class WindowIconButton extends ConsumerWidget {
             children: [
               IconButton(
                 onPressed: () {
-                  try {
-                    DesktopMultiWindow.getAllSubWindowIds().then(
-                      (subWindowIds) {
-                        for (final windowId in subWindowIds) {
-                          WindowController.fromWindowId(windowId).setFullscreen(
-                            (state == WindowIconButtonEnum.windowed)
-                                ? true
-                                : false,
-                          );
-                        }
-                      },
-                    );
-                  } on Exception {
-                    debugPrint("get sub windows error");
-                  }
-                  ref.read(windowIconStateProvider.notifier).setButtonState(
-                      (state == WindowIconButtonEnum.windowed)
-                          ? WindowIconButtonEnum.fullscreen
-                          : WindowIconButtonEnum.windowed);
+                  ref.read(subWindowStateProvider.notifier).setButtonState(
+                        (state == WindowIconButtonEnum.windowed)
+                            ? WindowIconButtonEnum.fullscreen
+                            : WindowIconButtonEnum.windowed,
+                      );
                 },
                 tooltip: lang.fullscreen,
                 icon: (state == WindowIconButtonEnum.windowed)
@@ -68,23 +43,8 @@ class WindowIconButton extends ConsumerWidget {
               ),
               IconButton(
                 onPressed: () {
-                  try {
-                    DesktopMultiWindow.getAllSubWindowIds().then(
-                      (subWindowIds) {
-                        for (final windowId in subWindowIds) {
-                          WindowController.fromWindowId(windowId)
-                              .setPreventClose(false)
-                              .then((value) {
-                            WindowController.fromWindowId(windowId).close();
-                          });
-                        }
-                      },
-                    );
-                  } on Exception {
-                    debugPrint("get sub windows error");
-                  }
                   ref
-                      .read(windowIconStateProvider.notifier)
+                      .read(subWindowStateProvider.notifier)
                       .setButtonState(WindowIconButtonEnum.closed);
                 },
                 tooltip: lang.close,

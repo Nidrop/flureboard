@@ -1,3 +1,4 @@
+import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flureboard/features/main_page/main_page.dart';
 import 'package:flureboard/features/main_page/providers/window_id.dart';
@@ -17,6 +18,17 @@ void main(List<String> args) {
     );
   } else {
     // debugPrint(args.firstOrNull);
+    WidgetsFlutterBinding.ensureInitialized();
+    DesktopMultiWindow.createWindow('Scoreboard').then((window) {
+      window
+        ..setFrame(const Offset(0, 0) & const Size(1280, 720))
+        ..center()
+        ..setTitle('Flureboard Scoreboard')
+        ..showTitleBar(true)
+        ..setPreventClose(true)
+        ..hide();
+    });
+
     runApp(const ProviderScope(child: MyApp()));
   }
 }
