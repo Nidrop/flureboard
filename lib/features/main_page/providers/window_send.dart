@@ -141,3 +141,13 @@ void windowSendBoardSettings(WindowSendBoardSettingsRef ref) {
   final settings = ref.watch(boardSettingsProvider);
   _send<String>("windowSendBoardSettings", jsonEncode(settings.toJson()));
 }
+
+@riverpod
+void windowSendPlayerCount(WindowSendPlayerCountRef ref, int number) {
+  final window = ref.watch(windowIdProvider);
+  if (window != 0) {
+    return;
+  }
+
+  _send<int>("windowSendPlayerCount", number);
+}

@@ -6,7 +6,7 @@ part of 'window_id.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$windowIdHash() => r'980a4745b21bfcb4484ce575fa8c0157598ce51b';
+String _$windowIdHash() => r'3b240a311c0c2d54a83c5acfb58502d873866a1d';
 
 /// See also [WindowId].
 @ProviderFor(WindowId)

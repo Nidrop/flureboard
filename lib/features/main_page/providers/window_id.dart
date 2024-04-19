@@ -70,6 +70,11 @@ class WindowId extends _$WindowId {
               BoardSettingsModel.fromJson(jsonDecode(call.arguments as String)),
             );
         break;
+      case "windowSendPlayerCount":
+        ref
+            .read(teamsProvider.notifier)
+            .changePlayerCount(call.arguments as int);
+        break;
       default:
     }
   }

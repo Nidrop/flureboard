@@ -105,6 +105,49 @@ class Teams extends _$Teams {
     );
   }
 
+  void changePlayerCount(int count) {
+    var teamLength = state.first.players.length;
+    if (count == teamLength || count <= 0) {
+      return;
+    }
+
+    //TODO fix exception on shrinking
+    state = List.generate(
+      state.length,
+      (teamIndex) => TeamModel(
+        name: state[teamIndex].name,
+        country: state[teamIndex].country,
+        score: state[teamIndex].score,
+        timeouts: state[teamIndex].timeouts,
+        falls: state[teamIndex].falls,
+        players: List.generate(
+          count,
+          (playerIndex) {
+            if (playerIndex < teamLength) {
+              return state[teamIndex].players[playerIndex];
+            } else {
+              return PlayerModel(
+                number: "  ",
+                name: "",
+                falls: 0,
+                score: 0,
+              );
+            }
+          },
+          growable: false,
+        ),
+      ),
+      growable: false,
+    );
+
+    //TODO find alternative way
+    ref.read(windowSendPlayerCountProvider(count));
+  }
+
+  void incPlayerCount(int number) {
+    changePlayerCount(state.first.players.length + number);
+  }
+
   void setPlayer({
     required int teamIndex,
     required int playerIndex,
@@ -183,16 +226,6 @@ class Teams extends _$Teams {
       falls: state[teamIndex].players[playerIndex].falls + number,
     );
   }
-
-  // //TODO do one state update
-  // void calculateTeamScore() {
-  //   for (final team in state) {
-  //     int sum = 0;
-  //     for (final player in team.players) {
-  //       sum += player.score;
-  //     }
-  //   }
-  // }
 }
 
 @riverpod

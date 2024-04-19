@@ -507,5 +507,133 @@ final windowSendBoardSettingsProvider = AutoDisposeProvider<void>.internal(
 );
 
 typedef WindowSendBoardSettingsRef = AutoDisposeProviderRef<void>;
+String _$windowSendPlayerCountHash() =>
+    r'8fb16799c7bd4cffec0556bec7ea915470dc033c';
+
+/// See also [windowSendPlayerCount].
+@ProviderFor(windowSendPlayerCount)
+const windowSendPlayerCountProvider = WindowSendPlayerCountFamily();
+
+/// See also [windowSendPlayerCount].
+class WindowSendPlayerCountFamily extends Family<void> {
+  /// See also [windowSendPlayerCount].
+  const WindowSendPlayerCountFamily();
+
+  /// See also [windowSendPlayerCount].
+  WindowSendPlayerCountProvider call(
+    int number,
+  ) {
+    return WindowSendPlayerCountProvider(
+      number,
+    );
+  }
+
+  @override
+  WindowSendPlayerCountProvider getProviderOverride(
+    covariant WindowSendPlayerCountProvider provider,
+  ) {
+    return call(
+      provider.number,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'windowSendPlayerCountProvider';
+}
+
+/// See also [windowSendPlayerCount].
+class WindowSendPlayerCountProvider extends AutoDisposeProvider<void> {
+  /// See also [windowSendPlayerCount].
+  WindowSendPlayerCountProvider(
+    int number,
+  ) : this._internal(
+          (ref) => windowSendPlayerCount(
+            ref as WindowSendPlayerCountRef,
+            number,
+          ),
+          from: windowSendPlayerCountProvider,
+          name: r'windowSendPlayerCountProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$windowSendPlayerCountHash,
+          dependencies: WindowSendPlayerCountFamily._dependencies,
+          allTransitiveDependencies:
+              WindowSendPlayerCountFamily._allTransitiveDependencies,
+          number: number,
+        );
+
+  WindowSendPlayerCountProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.number,
+  }) : super.internal();
+
+  final int number;
+
+  @override
+  Override overrideWith(
+    void Function(WindowSendPlayerCountRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: WindowSendPlayerCountProvider._internal(
+        (ref) => create(ref as WindowSendPlayerCountRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        number: number,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeProviderElement<void> createElement() {
+    return _WindowSendPlayerCountProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is WindowSendPlayerCountProvider && other.number == number;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, number.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin WindowSendPlayerCountRef on AutoDisposeProviderRef<void> {
+  /// The parameter `number` of this provider.
+  int get number;
+}
+
+class _WindowSendPlayerCountProviderElement
+    extends AutoDisposeProviderElement<void> with WindowSendPlayerCountRef {
+  _WindowSendPlayerCountProviderElement(super.provider);
+
+  @override
+  int get number => (origin as WindowSendPlayerCountProvider).number;
+}
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -24,6 +24,7 @@ sealed class Lang {
   final String teamTimeouts1 = "Team Timeouts";
   final String fullscreen = "Fullscreen";
   final String scoreboard = "Scoreboard";
+  final String playerCount = "Player count";
 }
 
 class LangRu implements Lang {
@@ -77,4 +78,6 @@ class LangRu implements Lang {
   final String fullscreen = "Полноэкранный режим";
   @override
   final String scoreboard = "Табло";
+  @override
+  final String playerCount = "Количество игроков";
 }

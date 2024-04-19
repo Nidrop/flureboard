@@ -1,7 +1,9 @@
 import 'package:flureboard/features/language/current_language.dart';
 import 'package:flureboard/features/main_page/providers/board_settings.dart';
+import 'package:flureboard/features/main_page/providers/teams.dart';
 import 'package:flureboard/features/main_page/widgets/flure_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SettingsDialog extends ConsumerWidget {
@@ -11,10 +13,12 @@ class SettingsDialog extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final lang = ref.watch(currentLanguageProvider);
     final settings = ref.watch(boardSettingsProvider);
+    final playerCount =
+        ref.watch(teamsProvider.select((value) => value.first.players.length));
 
     return Dialog(
       child: Container(
-        height: 280,
+        height: 320,
         width: 200,
         margin: const EdgeInsets.all(12),
         child: Column(
@@ -37,6 +41,29 @@ class SettingsDialog extends ConsumerWidget {
                       onChanged: (v) => ref
                           .read(boardSettingsProvider.notifier)
                           .setBoardSettings(playersEnabled: v),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(lang.playerCount),
+                    Column(
+                      children: [
+                        TextButton(
+                          onPressed: () => ref
+                              .read(teamsProvider.notifier)
+                              .incPlayerCount(1),
+                          child: const Text('+'),
+                        ),
+                        Text(playerCount.toString()),
+                        TextButton(
+                          onPressed: () => ref
+                              .read(teamsProvider.notifier)
+                              .incPlayerCount(-1),
+                          child: const Text('-'),
+                        ),
+                      ],
                     ),
                   ],
                 ),
