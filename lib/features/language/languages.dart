@@ -1,3 +1,4 @@
+//TODO normalize names
 sealed class Lang {
   final String playerNumber = "Number";
   final String playerName = "Name";
@@ -25,6 +26,7 @@ sealed class Lang {
   final String fullscreen = "Fullscreen";
   final String scoreboard = "Scoreboard";
   final String playerCount = "Player count";
+  final String stopwatch = "Stopwatch";
 }
 
 class LangRu implements Lang {
@@ -80,4 +82,6 @@ class LangRu implements Lang {
   final String scoreboard = "Табло";
   @override
   final String playerCount = "Количество игроков";
+  @override
+  final String stopwatch = "Секундомер";
 }

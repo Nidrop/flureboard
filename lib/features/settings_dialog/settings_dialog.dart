@@ -1,6 +1,8 @@
 import 'package:flureboard/features/language/current_language.dart';
+import 'package:flureboard/features/main_page/models/timer_model.dart';
 import 'package:flureboard/features/main_page/providers/board_settings.dart';
 import 'package:flureboard/features/main_page/providers/teams.dart';
+import 'package:flureboard/features/main_page/providers/timer.dart';
 import 'package:flureboard/features/main_page/widgets/flure_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -9,16 +11,25 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class SettingsDialog extends ConsumerWidget {
   const SettingsDialog({super.key});
 
+  bool isOperationSub(int Function(int, int) op) {
+    if (op == operationSub) {
+      return true;
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final lang = ref.watch(currentLanguageProvider);
     final settings = ref.watch(boardSettingsProvider);
     final playerCount =
         ref.watch(teamsProvider.select((value) => value.first.players.length));
+    final timerOperation =
+        ref.watch(timerProvider.select((value) => value.operation));
 
     return Dialog(
       child: Container(
-        height: 320,
+        height: 350,
         width: 200,
         margin: const EdgeInsets.all(12),
         child: Column(
@@ -33,15 +44,15 @@ class SettingsDialog extends ConsumerWidget {
             Column(
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(lang.players),
+                    Text(lang.stopwatch),
                     Switch(
-                      value: settings.playersEnabled,
-                      onChanged: (v) => ref
-                          .read(boardSettingsProvider.notifier)
-                          .setBoardSettings(playersEnabled: v),
+                      value: isOperationSub(timerOperation),
+                      onChanged: (value) =>
+                          ref.read(timerProvider.notifier).toggleOperation(),
                     ),
+                    Text(lang.timer),
                   ],
                 ),
                 Row(
@@ -64,6 +75,18 @@ class SettingsDialog extends ConsumerWidget {
                           child: const Text('-'),
                         ),
                       ],
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(lang.players),
+                    Switch(
+                      value: settings.playersEnabled,
+                      onChanged: (v) => ref
+                          .read(boardSettingsProvider.notifier)
+                          .setBoardSettings(playersEnabled: v),
                     ),
                   ],
                 ),

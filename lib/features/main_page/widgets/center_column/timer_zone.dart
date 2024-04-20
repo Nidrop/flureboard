@@ -23,6 +23,7 @@ class TimerZone extends ConsumerWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  //TODO modification n localization
                   FlureButton(
                     onPressed: () => ref
                         .read(timerProvider.notifier)

@@ -13,10 +13,12 @@ class Timer extends _$Timer {
       isPaused: true,
       periodTime: 0,
       timeoutTime: 0,
+      //TODO warm up timer
       timer: ReliableIntervalTimer(
         interval: const Duration(milliseconds: 100),
         callback: _timerCallback,
       ),
+      operation: operationSub,
     );
   }
 
@@ -29,7 +31,10 @@ class Timer extends _$Timer {
 
     if (isPeriod) {
       if (periodTime > 0) {
-        periodTime = state.periodTime - interval;
+        // periodTime = state.periodTime - interval;
+        periodTime = state.operation(state.periodTime, interval);
+      } else if (periodTime == 0 && state.operation == operationSum) {
+        periodTime = state.operation(state.periodTime, interval);
       } else {
         state.timer.stop();
         isPaused = true;
@@ -37,7 +42,8 @@ class Timer extends _$Timer {
       }
     } else {
       if (timeoutTime > 0) {
-        timeoutTime = state.timeoutTime - interval;
+        // timeoutTime = state.timeoutTime - interval;
+        timeoutTime = operationSub(state.timeoutTime, interval);
       } else {
         state.timer.stop();
         isPaused = true;
@@ -52,6 +58,25 @@ class Timer extends _$Timer {
       periodTime: periodTime,
       timeoutTime: timeoutTime,
       timer: state.timer,
+      operation: state.operation,
+    );
+  }
+
+  void toggleOperation() {
+    int Function(int, int) op;
+    if (state.operation == operationSub) {
+      op = operationSum;
+    } else {
+      op = operationSub;
+    }
+
+    state = TimerModel(
+      isPeriod: state.isPeriod,
+      isPaused: state.isPaused,
+      periodTime: state.periodTime,
+      timeoutTime: state.timeoutTime,
+      timer: state.timer,
+      operation: op,
     );
   }
 
@@ -63,6 +88,7 @@ class Timer extends _$Timer {
       periodTime: d,
       timeoutTime: state.timeoutTime,
       timer: state.timer,
+      operation: state.operation,
     );
   }
 
@@ -75,6 +101,7 @@ class Timer extends _$Timer {
       periodTime: state.periodTime,
       timeoutTime: d,
       timer: state.timer,
+      operation: state.operation,
     );
   }
 
@@ -86,6 +113,7 @@ class Timer extends _$Timer {
       periodTime: state.periodTime,
       timeoutTime: state.timeoutTime,
       timer: state.timer,
+      operation: state.operation,
     );
   }
 
@@ -113,6 +141,7 @@ class Timer extends _$Timer {
       periodTime: periodTime,
       timeoutTime: timeoutTime,
       timer: state.timer,
+      operation: state.operation,
     );
   }
 
@@ -142,6 +171,18 @@ class Timer extends _$Timer {
       periodTime: periodTime,
       timeoutTime: timeoutTime,
       timer: state.timer,
+      operation: state.operation,
+    );
+  }
+
+  void setOperation(int Function(int, int) op) {
+    state = TimerModel(
+      isPeriod: state.isPeriod,
+      isPaused: state.isPaused,
+      periodTime: state.periodTime,
+      timeoutTime: state.timeoutTime,
+      timer: state.timer,
+      operation: op,
     );
   }
 }

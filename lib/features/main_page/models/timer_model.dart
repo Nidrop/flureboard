@@ -1,10 +1,14 @@
 import 'package:reliable_interval_timer/reliable_interval_timer.dart';
 
+int operationSum(int n1, int n2) => n1 + n2;
+int operationSub(int n1, int n2) => n1 - n2;
+
 class TimerModel {
   final bool isPeriod, isPaused;
   final int periodTime;
   final int timeoutTime;
   final ReliableIntervalTimer timer;
+  final int Function(int, int) operation;
 
   TimerModel({
     required this.isPeriod,
@@ -12,6 +16,7 @@ class TimerModel {
     required this.periodTime,
     required this.timeoutTime,
     required this.timer,
+    required this.operation,
   });
 
   static String timeToString(int time) {
