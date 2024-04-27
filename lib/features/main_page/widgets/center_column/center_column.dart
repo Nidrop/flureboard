@@ -24,7 +24,7 @@ class CenterColumn extends StatelessWidget {
           ),
         ),
         //timer
-        Expanded(flex: 3, child: TimerZone()),
+        Expanded(flex: 2, child: TimerZone()),
         //falls
         Expanded(
           flex: 1,

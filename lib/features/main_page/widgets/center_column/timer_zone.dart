@@ -3,6 +3,7 @@ import 'package:flureboard/features/main_page/models/timer_model.dart';
 import 'package:flureboard/features/main_page/providers/timer.dart';
 import 'package:flureboard/features/main_page/providers/window_id.dart';
 import 'package:flureboard/features/main_page/widgets/flure_button.dart';
+import 'package:flureboard/features/style/app_theme.dart';
 import 'package:flureboard/features/timer_dialog/timer_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -79,13 +80,7 @@ class TimersWithoutButtons extends ConsumerWidget {
       children: [
         Text(
           TimerModel.timeToString(timer.periodTime),
-          style: const TextStyle(
-            fontSize: 32,
-            fontWeight: FontWeight.bold,
-            fontFeatures: [
-              FontFeature.tabularFigures(),
-            ],
-          ),
+          style: AppTheme.timerTextStyle,
         ),
         const SizedBox(
           height: 5,
@@ -99,14 +94,7 @@ class TimersWithoutButtons extends ConsumerWidget {
                   ),
                   Text(
                     TimerModel.timeToString(timer.timeoutTime),
-                    style: const TextStyle(
-                      color: Colors.yellow,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      fontFeatures: [
-                        FontFeature.tabularFigures(),
-                      ],
-                    ),
+                    style: AppTheme.timeoutTextStyle,
                   ),
                 ],
               )
@@ -132,14 +120,7 @@ class TimeoutButton extends ConsumerWidget {
         (timer.isPeriod)
             ? lang.timeout
             : TimerModel.timeToString(timer.timeoutTime),
-        style: const TextStyle(
-          color: Colors.yellow,
-          fontSize: 25,
-          fontWeight: FontWeight.bold,
-          fontFeatures: [
-            FontFeature.tabularFigures(),
-          ],
-        ),
+        style: AppTheme.timeoutTextStyle,
       ),
     );
   }
@@ -155,7 +136,7 @@ class TimerButton extends ConsumerWidget {
     final timer = ref.watch(timerProvider);
 
     return FlureButton(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: AppTheme.secondaryColor,
       onPressed: () {
         if (timer.isPaused) {
           showDialog(
@@ -173,13 +154,7 @@ class TimerButton extends ConsumerWidget {
       },
       child: Text(
         TimerModel.timeToString(timer.periodTime),
-        style: const TextStyle(
-          fontSize: 32,
-          fontWeight: FontWeight.bold,
-          fontFeatures: [
-            FontFeature.tabularFigures(),
-          ],
-        ),
+        style: AppTheme.timerEditTextStyle,
       ),
     );
   }

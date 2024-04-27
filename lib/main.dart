@@ -2,6 +2,7 @@ import 'package:desktop_multi_window/desktop_multi_window.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flureboard/features/main_page/main_page.dart';
 import 'package:flureboard/features/main_page/providers/window_id.dart';
+import 'package:flureboard/features/style/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -40,11 +41,8 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       title: 'Flureboard',
-      theme: FlexThemeData.light(scheme: FlexScheme.indigo),
-      darkTheme: FlexThemeData.dark(
-        scheme: FlexScheme.indigo,
-        darkIsTrueBlack: true,
-      ),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
       home: const MainPage(),
@@ -71,11 +69,8 @@ class _MyAppSecondaryState extends ConsumerState<MyAppSecondary> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flureboard Scoreboard',
-      theme: FlexThemeData.light(scheme: FlexScheme.indigo),
-      darkTheme: FlexThemeData.dark(
-        scheme: FlexScheme.indigo,
-        darkIsTrueBlack: true,
-      ),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
       home: const MainPage(),

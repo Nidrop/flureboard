@@ -1,5 +1,6 @@
 import 'package:flureboard/features/main_page/providers/teams.dart';
 import 'package:flureboard/features/main_page/providers/window_id.dart';
+import 'package:flureboard/features/style/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -37,7 +38,10 @@ class PlayerName extends ConsumerWidget {
         ),
       );
     } else {
-      return Text(team.players[playerIndex].name.toString());
+      return Text(
+        team.players[playerIndex].name.toString(),
+        style: AppTheme.playerNameTextStyle,
+      );
     }
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flureboard/features/language/current_language.dart';
 import 'package:flureboard/features/main_page/widgets/flure_button.dart';
+import 'package:flureboard/features/style/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wheel_chooser/wheel_chooser.dart';
@@ -115,7 +116,7 @@ class _PlayerNumberDialogState extends ConsumerState<PlayerNumberDialog> {
                 children: [
                   TextButton(
                     // backgroundColor: Theme.of(context).colorScheme.secondary,
-                    // backgroundColor: Colors.blueGrey,
+                    // backgroundColor: AppTheme.secondaryColor,
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
