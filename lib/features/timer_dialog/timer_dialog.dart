@@ -43,7 +43,6 @@ class _TimerDialogState extends ConsumerState<TimerDialog> {
     firstDigitOfMinute = minute % 10;
     secondDigitOfMinute = minute ~/ 10;
 
-    //TODO dispose controllers
     _wheelControllers = [
       FixedExtentScrollController(initialItem: secondDigitOfMinute),
       FixedExtentScrollController(initialItem: firstDigitOfMinute),
@@ -51,6 +50,15 @@ class _TimerDialogState extends ConsumerState<TimerDialog> {
       FixedExtentScrollController(initialItem: firstDigitOfSecond),
       FixedExtentScrollController(initialItem: digitOfMillisecond),
     ];
+  }
+
+  @override
+  void dispose() {
+    for (var wc in _wheelControllers) {
+      wc.dispose();
+    }
+
+    super.dispose();
   }
 
   @override
@@ -182,7 +190,7 @@ class _TimerDialogState extends ConsumerState<TimerDialog> {
                 children: [
                   TextButton(
                     // backgroundColor: Theme.of(context).colorScheme.secondary,
-                    // backgroundColor: Colors.blueGrey,
+                    // backgroundColor: AppTheme.secondaryColor,
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
@@ -190,7 +198,7 @@ class _TimerDialogState extends ConsumerState<TimerDialog> {
                   ),
                   TextButton(
                     // backgroundColor: Theme.of(context).colorScheme.secondary,
-                    // backgroundColor: Colors.blueGrey,
+                    // backgroundColor: AppTheme.secondaryColor,
                     onPressed: () {
                       for (var w in _wheelControllers) {
                         w.animateTo(
