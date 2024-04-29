@@ -46,9 +46,16 @@ dependencies:
   desktop_multi_window:
     git:
       url: https://github.com/rustdesk-org/rustdesk_desktop_multi_window
-  window_manager:
+  window_size:
     git:
-      url: https://github.com/rustdesk-org/window_manager
+      url: https://github.com/google/flutter-desktop-embedding.git
+      path: plugins/window_size
+      ref: a738913c8ce2c9f47515382d40827e794a334274
+  url_launcher: ^6.2.1
+  texture_rgba_renderer: ^0.0.16
+  # window_manager:
+  #   git:
+  #     url: https://github.com/rustdesk-org/window_manager
 dev_dependencies:
   flutter_test:
     sdk: flutter
